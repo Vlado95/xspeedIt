@@ -4,18 +4,27 @@ import java.util.*;
 
 public class Box {
 	private String etiquette;
-	private int capacity;
+	Integer capacity;
 	private List<Integer> article = new ArrayList<Integer>();
+	
+	
+	public Box() {
+		super();
+	}
+	public Box(Integer capacity) {
+		super();
+		this.capacity = capacity;
+	}
 	public String getEtiquette() {
 		return etiquette;
 	}
 	public void setEtiquette(String etiquette) {
 		this.etiquette = etiquette;
 	}
-	public int getCapacity() {
+	public Integer getCapacity() {
 		return capacity;
 	}
-	public void setCapacity(int capacity) {
+	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
 	}
 	public List<Integer> getArticle() {

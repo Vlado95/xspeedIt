@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.xspeedid.models.Box;
 import com.xspeedid.robot.IRobot;
 import com.xspeedid.robot.RobotImpl;
 
@@ -44,19 +45,67 @@ public class RobotTest {
 		
 	}
 
-//	@Test
-//	public void testAddInBox() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testIntToArrayInt() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testCreateEtiquette() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testAddInBox() {
+		Box box = new Box(10);
+		Integer expected1 = 8;
+		robot.addInBox(box, 2);
+		System.out.println("etiquette1 "+box.getEtiquette());
+		Assert.assertEquals("add in box 1 ", expected1, box.getCapacity());
+		Integer expected2 = 5;
+		robot.addInBox(box, 3);
+		System.out.println("etiquette "+box.getEtiquette());
+		Assert.assertEquals("add in box 2", expected2, box.getCapacity());
+		Assert.assertEquals("add in box 3", expected2, robot.addInBox(box, 9).getCapacity());
+	}
+
+	@Test
+	public void testIntToArrayInt() {
+		String articles = "12345678964464446";
+		List<Integer> expecteds = Arrays.asList(1,2,3,4,5,6,7,8,9,6,4,4,6,4,4,4,6);
+		Collections.sort(expecteds,Collections.reverseOrder());
+		Assert.assertEquals("integer to list integer ", expecteds, robot.intToArrayInt(articles));
+	}
+
+	@Test
+	public void testCreateEtiquette() {
+		List<Box> boxArticles = new ArrayList<Box>();
+		Box box = new Box(10);
+		box.setEtiquette("136");
+		Box box1 = new Box(10);
+		box1.setEtiquette("46");
+		Box box2 = new Box(10);
+		box2.setEtiquette("244");
+		Box box3 = new Box(10);
+		box3.setEtiquette("19");
+		Box box4 = new Box(10);
+		box4.setEtiquette("53");
+		boxArticles.add(box);
+		boxArticles.add(box1);
+		boxArticles.add(box2);
+		boxArticles.add(box3);
+		boxArticles.add(box4);
+		
+		String expected = "136/46/244/19/53";
+		 Assert.assertEquals("creating tiquette", expected, robot.createEtiquette(boxArticles));
+		 System.out.println(robot.createEtiquette(boxArticles));
+
+	}
+	
+	@Test
+	public void createBoxEtiquette() {
+	 Box box = new Box(10);
+	 List<Integer> articles = new ArrayList<Integer>();
+	 articles.add(1);
+	 articles.add(3);
+	 articles.add(6);
+	 box.setArticle(articles);
+	 String expected ="136";
+	 Assert.assertEquals("creating box tiquette", expected, robot.createBoxEtiquette(box).getEtiquette());
+
+	 
+	 
+		
+	}
 
 }

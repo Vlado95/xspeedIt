@@ -8,10 +8,12 @@ public interface IRobot {
 	
 	Integer getClosest(List<Integer> articleList, Integer article);
 	
-	Integer addInBox(Box box,  Integer article);
+	Box addInBox(Box box,  Integer article);
 	
-	List<Integer> intToArrayInt(Integer articles);
+	List<Integer> intToArrayInt(String articles);
 	
-	String  createEtiquette(List boxArticles) ;
+	String  createEtiquette(List<Box> boxArticles) ;
+	
+	Box  createBoxEtiquette(Box box) ;
 
 }
